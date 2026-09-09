@@ -1,0 +1,20 @@
+services:
+  mysql:
+    image: mysql:8.4.11
+    environment:
+      MYSQL_DATABASE: fintechlab_inicio
+      MYSQL_USER: fintechlab
+      MYSQL_PASSWORD: local_dev_only
+      MYSQL_ROOT_PASSWORD: local_root_only
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-plocal_root_only"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    volumes:
+      - fintechlab_inicio_mysql:/var/lib/mysql
+
+volumes:
+  fintechlab_inicio_mysql:

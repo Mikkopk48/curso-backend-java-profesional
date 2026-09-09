@@ -1,0 +1,4 @@
+fintechlab:
+  security:
+    issuer: ${FINTECHLAB_JWT_ISSUER}
+    audience: ${FINTECHLAB_JWT_AUDIENCE:fintechlab-api}

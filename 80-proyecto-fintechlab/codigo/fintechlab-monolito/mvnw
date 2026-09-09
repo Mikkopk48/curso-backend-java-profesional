@@ -1,0 +1,17 @@
+#!/bin/sh
+set -eu
+if command -v mvn >/dev/null 2>&1; then exec mvn "$@"; fi
+BASE_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+MAVEN_VERSION=3.9.11
+CACHE="$BASE_DIR/.mvn/apache-maven-$MAVEN_VERSION"
+if [ ! -x "$CACHE/bin/mvn" ]; then
+  mkdir -p "$BASE_DIR/.mvn"
+  ARCHIVE="$BASE_DIR/.mvn/apache-maven-$MAVEN_VERSION-bin.zip"
+  URL="https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/$MAVEN_VERSION/apache-maven-$MAVEN_VERSION-bin.zip"
+  if command -v curl >/dev/null 2>&1; then curl --fail --location "$URL" --output "$ARCHIVE"
+  elif command -v wget >/dev/null 2>&1; then wget -O "$ARCHIVE" "$URL"
+  else echo "Se necesita Maven, curl o wget; también puedes usar CI." >&2; exit 127; fi
+  command -v unzip >/dev/null 2>&1 || { echo "Se necesita unzip para preparar Maven." >&2; exit 127; }
+  unzip -q "$ARCHIVE" -d "$BASE_DIR/.mvn"
+fi
+exec "$CACHE/bin/mvn" "$@"

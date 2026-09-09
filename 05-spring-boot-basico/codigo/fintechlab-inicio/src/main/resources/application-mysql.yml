@@ -1,0 +1,10 @@
+spring:
+  datasource:
+    url: ${DB_URL:jdbc:mysql://localhost:3306/fintechlab_inicio}
+    username: ${DB_USER:fintechlab}
+    password: ${DB_PASSWORD:local_dev_only}
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true

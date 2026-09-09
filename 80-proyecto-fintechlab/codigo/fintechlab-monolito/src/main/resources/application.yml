@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: fintechlab-monolito
+  profiles:
+    default: dev
+  datasource:
+    url: ${FINTECHLAB_DB_URL:jdbc:mysql://localhost:3306/fintechlab?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC}
+    username: ${FINTECHLAB_DB_USER:fintech}
+    password: ${FINTECHLAB_DB_PASSWORD:local_dev_only}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+server:
+  error:
+    include-stacktrace: never
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    url: /openapi/fintechlab.yaml

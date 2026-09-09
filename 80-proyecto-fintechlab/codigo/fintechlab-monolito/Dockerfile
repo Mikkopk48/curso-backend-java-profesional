@@ -1,0 +1,5 @@
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+COPY target/fintechlab-monolito-1.0.0-SNAPSHOT.jar app.jar
+USER 10001
+ENTRYPOINT ["java","-jar","/app/app.jar"]
