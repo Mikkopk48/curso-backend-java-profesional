@@ -1,4 +1,4 @@
-# Unidad 5 — Guía previa: Java, Maven y proyectos antes de Spring Boot
+aca# Unidad 5 — Guía previa: Java, Maven y proyectos antes de Spring Boot
 
 ## Para qué existe esta guía
 
@@ -36,13 +36,13 @@ Esos temas tienen capítulos propios. Ahora solo aprenderás qué clase de proye
 
 Cuando comienzas con Java, puedes escribir algo así:
 
-~~~java
+```java
 public class Hello {
     public static void main(String[] args) {
         System.out.println("Hola");
     }
 }
-~~~
+```
 
 Parece que el programa es únicamente `Hello.java`, pero incluso este ejemplo necesita varias cosas:
 
@@ -75,17 +75,17 @@ La carpeta del proyecto no es todavía la aplicación ejecutándose. Es el conju
 
 Un **archivo** contiene información y normalmente posee un nombre con extensión:
 
-~~~text
+```text
 CustomerService.java
 application.yml
 pom.xml
-~~~
+```
 
 Una **carpeta** contiene archivos u otras carpetas. Una **ruta** indica cómo llegar hasta algo:
 
-~~~text
+```text
 src/main/java/dev/fintechlab/inicio/FintechLabInicioApplication.java
-~~~
+```
 
 Cada `/` representa entrar en otra carpeta. El último elemento es el archivo.
 
@@ -93,9 +93,9 @@ Cada `/` representa entrar en otra carpeta. El último elemento es el archivo.
 
 Una ruta relativa comienza desde la carpeta en la que estás trabajando:
 
-~~~text
+```text
 src/main/java
-~~~
+```
 
 Una ruta absoluta comienza desde la raíz del sistema y localiza el archivo sin depender de tu posición actual. Su forma cambia entre macOS, Linux y Windows.
 
@@ -107,10 +107,10 @@ Puedes pensar en la carpeta actual como tu ubicación en un mapa. El comando no 
 
 El **código fuente** es el texto que escribes y puedes leer:
 
-~~~text
+```text
 FintechLabInicioApplication.java
 CustomerController.java
-~~~
+```
 
 En Java, estos archivos terminan en `.java`. El sistema operativo no ejecuta directamente el texto como si entendiera su significado completo. Primero debe intervenir el compilador.
 
@@ -142,9 +142,9 @@ Que algo compile significa que superó determinados controles. No significa que 
 
 Este código puede compilar y seguir teniendo un error lógico:
 
-~~~java
+```java
 int total = price - quantity; // quizá debía multiplicar
-~~~
+```
 
 ## 5. Ejecutar
 
@@ -160,9 +160,9 @@ Al ejecutar una aplicación Java:
 
 ### Compilar no es ejecutar
 
-| Acción | Pregunta que responde |
-|---|---|
-| Compilar | ¿El código puede transformarse correctamente? |
+| Acción   | Pregunta que responde                          |
+| -------- | ---------------------------------------------- |
+| Compilar | ¿El código puede transformarse correctamente?  |
 | Ejecutar | ¿Qué hace el programa cuando está funcionando? |
 
 Puedes compilar hoy y ejecutar mañana. También puedes intentar ejecutar una versión compilada anteriormente aunque el código fuente haya cambiado, lo cual puede producir confusión. Las herramientas de construcción ayudan a mantener estas etapas ordenadas.
@@ -171,19 +171,19 @@ Puedes compilar hoy y ejecutar mañana. También puedes intentar ejecutar una ve
 
 Una aplicación Java tradicional necesita un punto de entrada:
 
-~~~java
+```java
 public static void main(String[] args) {
     // aquí comienza la ejecución de tu código
 }
-~~~
+```
 
 No significa que todo el programa deba estar dentro de `main`. Significa que la JVM necesita una primera puerta por la que entrar.
 
 En el proyecto de esta unidad, esa puerta está en:
 
-~~~text
+```text
 src/main/java/dev/fintechlab/inicio/FintechLabInicioApplication.java
-~~~
+```
 
 Por ahora no necesitas comprender las anotaciones de esa clase. Solo identifica `main`.
 
@@ -205,9 +205,9 @@ Si pulsas Run dos veces sin detener la primera aplicación, puedes terminar con 
 
 Una **prueba automatizada** también es código. Ejecuta una parte de la aplicación y comprueba que el resultado coincida con una expectativa.
 
-~~~java
+```java
 assertEquals(4, calculator.add(2, 2));
-~~~
+```
 
 Maven puede compilar tanto el código de la aplicación como el código de las pruebas y después ejecutar las pruebas.
 
@@ -241,9 +241,9 @@ Durante el desarrollo tienes piezas distribuidas por el taller. El JAR es una ca
 
 Un archivo como este:
 
-~~~text
+```text
 fintechlab-inicio-1.0.0-SNAPSHOT.jar
-~~~
+```
 
 es un producto generado. No debes editarlo manualmente para cambiar el programa. Debes cambiar la fuente y volver a construirlo.
 
@@ -292,9 +292,9 @@ También una clase propia puede depender de otra. La palabra dependencia expresa
 
 Las bibliotecas evolucionan. Una versión identifica una publicación concreta:
 
-~~~text
+```text
 3.5.15
-~~~
+```
 
 Versiones diferentes pueden:
 
@@ -391,9 +391,9 @@ POM significa **Project Object Model**. `pom.xml` es el archivo principal con el
 
 XML es un formato de texto estructurado con etiquetas:
 
-~~~xml
+```xml
 <name>fintechlab-inicio</name>
-~~~
+```
 
 No necesitas aprender XML completo ahora. Solo debes reconocer que las etiquetas se abren y cierran, y que su posición expresa estructura.
 
@@ -407,7 +407,7 @@ No necesitas aprender XML completo ahora. Solo debes reconocer que las etiquetas
 
 Fragmento simplificado:
 
-~~~xml
+```xml
 <project>
   <groupId>dev.fintechlab</groupId>
   <artifactId>fintechlab-inicio</artifactId>
@@ -417,7 +417,7 @@ Fragmento simplificado:
     <!-- bibliotecas necesarias -->
   </dependencies>
 </project>
-~~~
+```
 
 ## 19. `groupId`, `artifactId` y `version`
 
@@ -427,9 +427,9 @@ Estas tres piezas identifican un artefacto Maven.
 
 Identifica normalmente a la organización o familia del proyecto:
 
-~~~text
+```text
 dev.fintechlab
-~~~
+```
 
 Se parece a un apellido o dominio organizativo.
 
@@ -437,17 +437,17 @@ Se parece a un apellido o dominio organizativo.
 
 Identifica el proyecto concreto:
 
-~~~text
+```text
 fintechlab-inicio
-~~~
+```
 
 ### `version`
 
 Identifica la versión de ese proyecto:
 
-~~~text
+```text
 1.0.0-SNAPSHOT
-~~~
+```
 
 `SNAPSHOT` indica normalmente una versión todavía en desarrollo, que puede cambiar.
 
@@ -461,12 +461,12 @@ dev.fintechlab : fintechlab-inicio : 1.0.0-SNAPSHOT
 
 En el POM una dependencia puede verse así:
 
-~~~xml
+```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
-~~~
+```
 
 Esto no copia manualmente el código dentro del POM. Declara qué artefacto necesita el proyecto. Maven resuelve dónde obtenerlo y también puede descargar otras dependencias que ese artefacto necesita.
 
@@ -523,13 +523,13 @@ Una dependencia aporta código usado por la aplicación o las pruebas. Un plugin
 
 Maven organiza tareas en fases. No necesitas memorizar todas. Estas son las más útiles al comenzar:
 
-| Fase/comando | Idea principal |
-|---|---|
-| `clean` | Elimina resultados de construcciones anteriores |
-| `compile` | Compila el código principal |
-| `test` | Compila y ejecuta pruebas unitarias |
-| `package` | Crea el artefacto, normalmente un JAR |
-| `verify` | Ejecuta comprobaciones adicionales configuradas |
+| Fase/comando | Idea principal                                  |
+| ------------ | ----------------------------------------------- |
+| `clean`      | Elimina resultados de construcciones anteriores |
+| `compile`    | Compila el código principal                     |
+| `test`       | Compila y ejecuta pruebas unitarias             |
+| `package`    | Crea el artefacto, normalmente un JAR           |
+| `verify`     | Ejecuta comprobaciones adicionales configuradas |
 
 Cuando pides una fase posterior, Maven ejecuta las fases necesarias anteriores del mismo ciclo.
 
@@ -539,18 +539,18 @@ Por ejemplo, `package` no mete código sin compilar dentro de una caja: antes re
 
 En una terminal puedes escribir:
 
-~~~bash
+```bash
 ./mvnw test
-~~~
+```
 
 - `./mvnw` es el programa o script que invocas;
 - `test` indica la fase solicitada.
 
 Otro ejemplo:
 
-~~~bash
+```bash
 ./mvnw spring-boot:run
-~~~
+```
 
 `spring-boot:run` es un objetivo proporcionado por el plugin de Spring Boot. Su intención es iniciar la aplicación desde el proyecto.
 
@@ -560,11 +560,11 @@ El **Maven Wrapper** permite que el proyecto prepare o utilice una versión cono
 
 Archivos principales:
 
-~~~text
+```text
 mvnw       → script para macOS y Linux
 mvnw.cmd   → script para Windows
 .mvn/      → configuración del Wrapper
-~~~
+```
 
 ### ¿Por qué no escribir simplemente `mvn`?
 
@@ -574,15 +574,15 @@ mvnw.cmd   → script para Windows
 
 macOS o Linux:
 
-~~~bash
+```bash
 ./mvnw test
-~~~
+```
 
 Windows PowerShell:
 
-~~~powershell
+```powershell
 .\mvnw.cmd test
-~~~
+```
 
 No abras `mvnw` para aprender Maven línea por línea. Es infraestructura del Wrapper, no material de lectura para esta etapa.
 
@@ -606,7 +606,7 @@ Esto no significa que tu aplicación ya esté ejecutándose. Maven puede estar p
 
 El proyecto inicial tiene una estructura parecida a esta:
 
-~~~text
+```text
 fintechlab-inicio/
 ├── pom.xml
 ├── mvnw
@@ -619,7 +619,7 @@ fintechlab-inicio/
 │   └── test/
 │       └── java/
 └── target/          ← aparece al construir; no es código fuente
-~~~
+```
 
 No todas las carpetas existen desde el primer segundo. Algunas se generan.
 
@@ -633,9 +633,9 @@ No significa que todo dentro sea Java. También existen recursos y pruebas.
 
 Contiene el código Java principal de la aplicación:
 
-~~~text
+```text
 src/main/java/dev/fintechlab/inicio/...
-~~~
+```
 
 `main` aquí significa código principal, no el método `main`. Son conceptos relacionados solo por el nombre:
 
@@ -654,9 +654,9 @@ Contiene archivos que la aplicación necesita, pero que no son clases Java:
 
 En el proyecto inicial encontrarás:
 
-~~~text
+```text
 src/main/resources/application.yml
-~~~
+```
 
 Ese archivo contiene configuración. No necesitas comprenderla completa todavía.
 
@@ -714,15 +714,15 @@ Si ves dos copias aparentes de `application.yml`, una en `src` y otra dentro de 
 
 Una declaración como esta:
 
-~~~java
+```java
 package dev.fintechlab.inicio.customer;
-~~~
+```
 
 organiza el tipo dentro de un espacio de nombres. Normalmente coincide con las carpetas:
 
-~~~text
+```text
 dev/fintechlab/inicio/customer/
-~~~
+```
 
 Esto evita conflictos entre clases con nombres iguales y comunica organización.
 
@@ -738,9 +738,9 @@ El contexto vuelve a ser importante.
 
 Un `import` permite referirte a un tipo mediante su nombre corto:
 
-~~~java
+```java
 import java.time.Instant;
-~~~
+```
 
 No descarga la clase. Solo indica qué nombre completo estás utilizando. La clase debe estar disponible en Java, en tu proyecto o en una dependencia.
 
@@ -802,9 +802,9 @@ Si el proyecto es una obra, IntelliJ es el centro de trabajo con planos, buscado
 
 Para esta unidad no necesitas crear un proyecto nuevo. Ya existe uno en:
 
-~~~text
+```text
 05-spring-boot-basico/codigo/fintechlab-inicio
-~~~
+```
 
 Pasos generales en IntelliJ:
 
@@ -844,20 +844,20 @@ La primera indexación puede utilizar CPU y tardar. No es la aplicación backend
 
 ### Evidencias diferentes
 
-| Situación | Evidencia típica |
-|---|---|
-| Maven importando | panel de progreso y descarga de dependencias |
-| IntelliJ indexando | indicador de indexación/análisis |
-| Código compilando | ventana Build con tareas y errores |
+| Situación               | Evidencia típica                                     |
+| ----------------------- | ---------------------------------------------------- |
+| Maven importando        | panel de progreso y descarga de dependencias         |
+| IntelliJ indexando      | indicador de indexación/análisis                     |
+| Código compilando       | ventana Build con tareas y errores                   |
 | Aplicación ejecutándose | consola Run con proceso activo y mensaje de arranque |
 
 ## 44. Construir desde IntelliJ
 
 El botón Build puede pedirle a IntelliJ o Maven que compile, según la configuración. Por eso conviene aprender también el comando reproducible:
 
-~~~bash
+```bash
 ./mvnw test
-~~~
+```
 
 Si el botón funciona y el comando falla, o al revés, compara:
 
@@ -984,9 +984,9 @@ Un equipo puede ejecutar muchos servicios de red. El puerto ayuda a dirigir el m
 
 La dirección IP o nombre del host se parece a la dirección de un edificio. El puerto se parece al número de ventanilla.
 
-~~~text
+```text
 http://localhost:8080
-~~~
+```
 
 - `localhost`: tu propio equipo;
 - `8080`: puerto donde normalmente escucha esta aplicación.
@@ -1009,12 +1009,12 @@ La Unidad 6 profundiza métodos, rutas, headers, body y códigos de estado. No n
 
 JSON es un formato de texto estructurado usado frecuentemente para representar datos:
 
-~~~json
+```json
 {
   "fullName": "Ana Demo",
   "email": "ana@example.test"
 }
-~~~
+```
 
 JSON no es una clase Java ni una tabla. Es una representación que puede viajar en un mensaje. Más adelante Jackson la convertirá en objetos Java.
 
@@ -1022,17 +1022,17 @@ JSON no es una clase Java ni una tabla. Es una representación que puede viajar 
 
 Una aplicación de consola puede imprimir un resultado y terminar:
 
-~~~text
+```text
 inicia → imprime → termina
-~~~
+```
 
 Un backend servidor normalmente permanece activo:
 
-~~~text
+```text
 inicia → prepara componentes → abre puerto → espera peticiones
                                 ↑                    ↓
                                 └──── responde ─────┘
-~~~
+```
 
 Por eso la consola de IntelliJ sigue indicando que el proceso está corriendo. No está trabado: está esperando trabajo.
 
@@ -1091,9 +1091,9 @@ El capítulo `01` explica cómo funciona cada punto. Aquí solo necesitas recono
 
 Un starter es una dependencia pensada como punto de entrada a una capacidad.
 
-~~~text
+```text
 spring-boot-starter-web
-~~~
+```
 
 Indica que quieres construir una aplicación web con la combinación compatible administrada por Spring Boot.
 
@@ -1200,9 +1200,9 @@ Modelo simplificado:
 
 Después puedes ejecutar el JAR mediante Java si fue preparado como ejecutable:
 
-~~~bash
+```bash
 java -jar target/fintechlab-inicio-1.0.0-SNAPSHOT.jar
-~~~
+```
 
 Maven construyó el artefacto. En este segundo comando, Java ejecuta el artefacto ya construido.
 
@@ -1313,9 +1313,9 @@ Las palabras datasource, JPA y Flyway pueden seguir siendo desconocidas. El cap�
 
 Desde la raíz `fintechlab-inicio`:
 
-~~~bash
+```bash
 ./mvnw test
-~~~
+```
 
 Observa:
 
@@ -1326,15 +1326,15 @@ Observa:
 
 Después:
 
-~~~bash
+```bash
 ./mvnw spring-boot:run
-~~~
+```
 
 Busca el mensaje `Started FintechLabInicioApplication`. En otra terminal:
 
-~~~bash
+```bash
 curl -i http://localhost:8080/actuator/health
-~~~
+```
 
 Detén la aplicación con `Ctrl+C` cuando termines.
 
@@ -1344,14 +1344,14 @@ Si falla, no intentes arreglar Maven, Java, Spring, MySQL y el editor al mismo t
 
 Aunque el proyecto las contenga, deja para después:
 
-| Elemento | Capítulo donde se explica |
-|---|---|
+| Elemento                         | Capítulo donde se explica                           |
+| -------------------------------- | --------------------------------------------------- |
 | Controller, service y repository | `03-api-rest-controller-service-repository-crud.md` |
-| Beans e inyección | `02-ioc-di-beans-y-configuracion.md` |
-| Entity y JPA | `04-jpa-mysql-pruebas-y-diagnostico.md` |
-| MySQL y migraciones | `04-jpa-mysql-pruebas-y-diagnostico.md` |
-| Tests en detalle | `04` y unidades 7–8 |
-| Flujo completo del laboratorio | `80-laboratorio-fintechlab-inicial.md` |
+| Beans e inyección                | `02-ioc-di-beans-y-configuracion.md`                |
+| Entity y JPA                     | `04-jpa-mysql-pruebas-y-diagnostico.md`             |
+| MySQL y migraciones              | `04-jpa-mysql-pruebas-y-diagnostico.md`             |
+| Tests en detalle                 | `04` y unidades 7–8                                 |
+| Flujo completo del laboratorio   | `80-laboratorio-fintechlab-inicial.md`              |
 
 No comprender esos archivos ahora no representa un atraso. Leerlos antes de poseer el vocabulario solo aumenta la carga mental.
 
@@ -1363,7 +1363,7 @@ No comprender esos archivos ahora no representa un atraso. Leerlos antes de pose
 
 Sin mirar, intenta completar oralmente esta historia:
 
-> Escribo código en ____. Maven lee ____ y obtiene ____. Al construir crea resultados en ____. El compilador transforma archivos ____ en ____. La JVM comienza por el método ____. Spring Boot prepara la aplicación y el servidor escucha en un ____.
+> Escribo código en \__src_\_. Maven lee \_pom.xml\_** y obtiene \__prerequisitos_\_. Al construir crea resultados en \_target\_**. El compilador transforma archivos \__java_\_ en \_.class y bytecode\_**. La JVM comienza por el método \__main_\_. Spring Boot prepara la aplicación y el servidor escucha en un \_puerto 8080\_**.
 
 No busques una redacción idéntica. Comprueba si las relaciones tienen sentido.
 
