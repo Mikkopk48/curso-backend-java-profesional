@@ -1,3 +1,5 @@
+# LEIDO!!
+
 # Unidad 5 — Spring y Spring Boot desde cero
 
 ## Antes de empezar
@@ -14,12 +16,12 @@ Spring es un conjunto de herramientas que puede crear y conectar los objetos de 
 
 No son sinónimos:
 
-| Nombre | Responsabilidad principal | Ejemplo |
-|---|---|---|
+| Nombre           | Responsabilidad principal                                              | Ejemplo                                               |
+| ---------------- | ---------------------------------------------------------------------- | ----------------------------------------------------- |
 | Spring Framework | Contenedor, inyección, web, datos, transacciones y otras abstracciones | Crear un `CustomerService` y entregarle su repository |
-| Spring MVC | Parte web tradicional del ecosistema Spring | Asociar `GET /customers` a un método Java |
-| Spring Data JPA | Integración de repositorios con JPA | Generar la implementación de `JpaRepository` |
-| Spring Boot | Arranque, autoconfiguración, starters, servidor embebido y operación | Levantar la API con `main` y un `application.yml` |
+| Spring MVC       | Parte web tradicional del ecosistema Spring                            | Asociar `GET /customers` a un método Java             |
+| Spring Data JPA  | Integración de repositorios con JPA                                    | Generar la implementación de `JpaRepository`          |
+| Spring Boot      | Arranque, autoconfiguración, starters, servidor embebido y operación   | Levantar la API con `main` y un `application.yml`     |
 
 Spring Boot utiliza Spring; no lo reemplaza.
 
@@ -81,23 +83,23 @@ Maven lee este archivo para conocer identidad, versión de Java, dependencias, p
 
 El parent de Spring Boot aporta versiones compatibles y valores predeterminados:
 
-~~~xml
+```xml
 <parent>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
   <version>3.5.15</version>
   <relativePath/>
 </parent>
-~~~
+```
 
 Un starter agrupa dependencias que suelen trabajar juntas:
 
-~~~xml
+```xml
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-web</artifactId>
 </dependency>
-~~~
+```
 
 `spring-boot-starter-web` no es “la web completa” dentro de un solo archivo. Declara un conjunto compatible que incluye Spring MVC, soporte JSON y el servidor web predeterminado. Maven resuelve dependencias transitivas y las coloca en el classpath.
 
@@ -105,17 +107,17 @@ Un starter agrupa dependencias que suelen trabajar juntas:
 
 `mvnw` y `mvnw.cmd` permiten usar la versión de Maven prevista por el proyecto:
 
-~~~bash
+```bash
 ./mvnw test
 ./mvnw spring-boot:run
 ./mvnw clean package
-~~~
+```
 
 En Windows PowerShell se usa normalmente:
 
-~~~powershell
+```powershell
 .\mvnw.cmd test
-~~~
+```
 
 `clean` elimina resultados anteriores, `test` compila y ejecuta pruebas, `package` produce el JAR y `spring-boot:run` inicia la aplicación desde Maven. El orden de comandos no es una liturgia: elige el más pequeño que compruebe tu hipótesis.
 
@@ -130,7 +132,7 @@ El package debe coincidir con la ubicación y seguir una jerarquía estable. La 
 
 ## La clase principal
 
-~~~java
+```java
 package dev.fintechlab.inicio;
 
 import org.springframework.boot.SpringApplication;
@@ -143,7 +145,7 @@ public class FintechLabInicioApplication {
         SpringApplication.run(FintechLabInicioApplication.class, args);
     }
 }
-~~~
+```
 
 `main` sigue siendo el punto de entrada de Java. `SpringApplication.run` inicia el proceso de Spring y devuelve un contexto de aplicación. La anotación compuesta `@SpringBootApplication` reúne tres ideas:
 
@@ -173,10 +175,10 @@ Si cualquier dependencia obligatoria no puede crearse, el contexto no termina de
 
 En un proyecto moderno no necesitas instalar Tomcat por separado para empezar. El starter web incluye un servidor que se inicia dentro del mismo proceso Java. El JAR contiene la aplicación y las dependencias necesarias para ejecutarla:
 
-~~~bash
+```bash
 ./mvnw clean package
 java -jar target/fintechlab-inicio-1.0.0-SNAPSHOT.jar
-~~~
+```
 
 “Embebido” no significa de juguete. Significa que el ciclo de vida del servidor forma parte de la aplicación y del artefacto ejecutable.
 
@@ -196,9 +198,9 @@ Por tanto, “convención sobre configuración” no significa “configuración
 
 Cuando necesites investigar el arranque, puedes habilitar el reporte de condiciones:
 
-~~~bash
+```bash
 ./mvnw spring-boot:run -Dspring-boot.run.arguments=--debug
-~~~
+```
 
 El reporte es extenso. Úsalo para responder una pregunta concreta: qué configuración coincidió, cuál no y qué condición decidió el resultado.
 
@@ -222,9 +224,9 @@ Estas tareas pueden usar CPU y red, pero no equivalen necesariamente a servir HT
 
 Comprobación típica:
 
-~~~bash
+```bash
 curl -i http://localhost:8080/actuator/health
-~~~
+```
 
 Si devuelve conexión rechazada, la aplicación no está escuchando en ese puerto. Si devuelve HTTP, sí hay un servidor, aunque tal vez sea otro proceso. No pulses Run repetidamente: podrías iniciar una segunda instancia y obtener “port already in use”.
 
@@ -232,16 +234,16 @@ Si devuelve conexión rechazada, la aplicación no está escuchando en ese puert
 
 El banner confirma que Spring Boot comenzó, pero no que terminó correctamente. Busca el último evento significativo:
 
-~~~text
+```text
 Tomcat started on port 8080 (http)
 Started FintechLabInicioApplication in 2.841 seconds
-~~~
+```
 
 Si aparece `APPLICATION FAILED TO START`, lee el bloque de análisis y después recorre las causas. El mensaje útil suele parecerse a:
 
-~~~text
+```text
 Caused by: java.net.ConnectException: Connection refused
-~~~
+```
 
 No arregles todas las líneas rojas. Muchas son consecuencias en cascada de una sola causa.
 
@@ -264,7 +266,7 @@ Este capítulo solo presenta el recorrido. Los capítulos 03 y 04 explican respo
 
 ## Primer endpoint consciente
 
-~~~java
+```java
 package dev.fintechlab.inicio;
 
 import java.time.Instant;
@@ -283,7 +285,7 @@ class LearningController {
 }
 
 record StatusResponse(String status, Instant checkedAt) {}
-~~~
+```
 
 Aquí ocurren varias cosas diferentes:
 
@@ -338,9 +340,9 @@ Errores frecuentes:
 
 No resuelvas esos errores agregando bibliotecas al azar. Revisa el árbol:
 
-~~~bash
+```bash
 ./mvnw dependency:tree
-~~~
+```
 
 ## El límite de Spring Boot
 
@@ -385,10 +387,10 @@ Los cambios se pierden en el siguiente build. Modifica `src`.
 
 Comprueba tanto la terminal como el JDK del editor. Maven puede usar un JDK distinto del botón Run.
 
-~~~bash
+```bash
 java -version
 ./mvnw -version
-~~~
+```
 
 ### Pulsar Run varias veces
 
